@@ -17,8 +17,11 @@ public class Fibonacci {
         long endTime = System.nanoTime();
         displayResults("For Loop", (endTime - startTime) / 1e9, fibonacciNumbers); //divided by 1e9 to convert to seconds
 
-
-        
+        //calculation for time taken for while loop
+        startTime = System.nanoTime();
+        fibonacciNumbers = fibonacciWhile(num);
+        endTime = System.nanoTime();
+        displayResults("While Loop", (endTime - startTime) / 1e9, fibonacciNumbers); //divided by 1e9 to convert to seconds
 
         //insert recursion loop
 
@@ -28,7 +31,7 @@ public class Fibonacci {
     //generate Fibonacci sequence using for loop
     private static List<Long> fibonacciFor(int num) {
         List<Long> result = new ArrayList<>(); //making list into arraylist with values
-        long a = 0, b = 1;
+        long a = 0, b = 1; //initialize variables
         for (int i = 0; i < num; i++) { //keeps on iterating through the length of "num" declared earlier above in scanner
             result.add(a);
             long temp = a;
@@ -38,11 +41,26 @@ public class Fibonacci {
         return result;
     }
 
+    // Generate Fibonacci sequence using while loop
+    private static List<Long> fibonacciWhile(int num) {
+        List<Long> result = new ArrayList<>();
+        long a = 0, b = 1; //intialize variables
+        int count = 0;
+        while (count < num) {
+            result.add(a);
+            long temp = a;
+            a = b;
+            b = temp + b; //same idea with for loop
+            count++;
+        }
+        return result;
+    }
+
     //place fibonacci sequence calculation with recursion method here
 
     //place fibonacci sequence calculation with stream method here
 
-    // Display results including method name, time taken, and Fibonacci numbers
+    //displaying results: method name, time taken, and Fibonacci numbers
     private static void displayResults(String method, double timeTaken, List<Long> fibonacciNumbers) {
         System.out.println("Method: " + method);
         System.out.println("Time taken: " + timeTaken + " seconds");
