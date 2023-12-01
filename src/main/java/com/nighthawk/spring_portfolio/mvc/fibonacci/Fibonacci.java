@@ -26,10 +26,10 @@ public class Fibonacci {
         //insert recursion loop
 
         //insert stream loop
-        startTime = System.nanoTime();
-        fibonacciNumbers = fibonacciStream(num);
-        endTime = System.nanoTime();
-        displayResults("Stream Loop", endTime - startTime, fibonacciNumbers);
+        // startTime = System.nanoTime();
+        // fibonacciNumbers = fibonacciStream(num);
+        // endTime = System.nanoTime();
+        // displayResults("Stream Loop", endTime - startTime, fibonacciNumbers);
     }
     //generate Fibonacci sequence using for loop
     private static List<Long> fibonacciFor(int num) {
