@@ -97,6 +97,112 @@ class BubbleSort extends SortingAlgorithm {
     }
 }
 
+class SelectionSort extends SortingAlgorithm {
+    @Override
+    public void sort(DogBreed[] array) {
+        iterations = 0;
+        comparisons = 0;
+        mergesOrSwaps = 0;
+        executionTime = 0;
+
+        executionTime = System.currentTimeMillis();
+
+        int n = array.length;
+
+        for (int i = 0; i < n - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < n; j++) {
+                comparisons++;
+                if (array[j].getBreed().compareTo(array[minIndex].getBreed()) < 0) {
+                    minIndex = j;
+                }
+                iterations++;
+            }
+
+            // Swap array[i] and array[minIndex]
+            DogBreed temp = array[i];
+            array[i] = array[minIndex];
+            array[minIndex] = temp;
+
+            mergesOrSwaps++;
+        }
+
+        executionTime = System.currentTimeMillis() - executionTime;
+    }
+}
+
+
+class MergeSort extends SortingAlgorithm {
+    @Override
+    public void sort(DogBreed[] array) {
+        iterations = 0;
+        comparisons = 0;
+        mergesOrSwaps = 0;
+        executionTime = 0;
+
+        executionTime = System.currentTimeMillis();
+
+        mergeSort(array, 0, array.length - 1);
+
+        executionTime = System.currentTimeMillis() - executionTime;
+    }
+
+    private void merge(DogBreed[] array, int left, int mid, int right) {
+        int n1 = mid - left + 1;
+        int n2 = right - mid;
+
+        DogBreed[] leftArray = new DogBreed[n1];
+        DogBreed[] rightArray = new DogBreed[n2];
+
+        for (int i = 0; i < n1; ++i) {
+            leftArray[i] = array[left + i];
+        }
+        for (int j = 0; j < n2; ++j) {
+            rightArray[j] = array[mid + 1 + j];
+        }
+
+        int i = 0, j = 0;
+        int k = left;
+        while (i < n1 && j < n2) {
+            comparisons++;
+            if (leftArray[i].getBreed().compareTo(rightArray[j].getBreed()) <= 0) {
+                array[k] = leftArray[i];
+                i++;
+            } else {
+                array[k] = rightArray[j];
+                j++;
+            }
+            k++;
+            iterations++;
+        }
+
+        while (i < n1) {
+            array[k] = leftArray[i];
+            i++;
+            k++;
+            mergesOrSwaps++;
+        }
+
+        while (j < n2) {
+            array[k] = rightArray[j];
+            j++;
+            k++;
+            mergesOrSwaps++;
+        }
+    }
+
+    private void mergeSort(DogBreed[] array, int left, int right) {
+        if (left < right) {
+            int mid = (left + right) / 2;
+
+            mergeSort(array, left, mid);
+            mergeSort(array, mid + 1, right);
+
+            merge(array, left, mid, right);
+        }
+    }
+}
+
 public class SortingAlgs {
     public static void main(String[] args) {
         try {
