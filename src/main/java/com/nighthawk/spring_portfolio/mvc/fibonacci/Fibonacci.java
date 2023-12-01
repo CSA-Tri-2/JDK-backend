@@ -1,10 +1,13 @@
 package com.nighthawk.spring_portfolio.mvc.fibonacci;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Fibonacci {
-    public static void main(String[] args) {
+     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);  //scanner used for input on how many numbers for fibonacci
         System.out.print("Enter the number of Fibonacci numbers to generate: ");
         int num = scanner.nextInt();
@@ -23,19 +26,19 @@ public class Fibonacci {
         endTime = System.nanoTime();
         displayResults("While Loop", endTime - startTime, fibonacciNumbers); //divided by 1e9 to convert to seconds
 
-        //insert recursion loop
+        //measure time taken for recursion loop
         startTime = System.nanoTime();
-        List<Long> result = new ArrayList<>();
-        fibonacciNumbers = fibonacciRecursion(num, 0, 1, result);
+        fibonacciNumbers = fibonacciRecursion(num, 0, 1, new ArrayList<>());
         endTime = System.nanoTime();
         displayResults("Recursion Loop", (endTime - startTime) / 1e9, fibonacciNumbers);
 
-        //insert stream loop
-        // startTime = System.nanoTime();
-        // fibonacciNumbers = fibonacciStream(num);
-        // endTime = System.nanoTime();
-        // displayResults("Stream Loop", endTime - startTime, fibonacciNumbers);
+        //measure time taken for stream loop
+        startTime = System.nanoTime();
+        fibonacciNumbers = fibonacciStream(num);
+        endTime = System.nanoTime();
+        displayResults("Stream Loop", (endTime - startTime) / 1e9, fibonacciNumbers);
     }
+
     //generate Fibonacci sequence using for loop
     private static List<Long> fibonacciFor(int num) {
         List<Long> result = new ArrayList<>(); //making list into arraylist with values
@@ -49,22 +52,22 @@ public class Fibonacci {
         return result;
     }
 
-    // Generate Fibonacci sequence using while loop
+    //generate fibonacci sequence using while loop
     private static List<Long> fibonacciWhile(int num) {
         List<Long> result = new ArrayList<>();
-        long a = 0, b = 1; //intialize variables
+        long a = 0, b = 1;
         int count = 0;
         while (count < num) {
             result.add(a);
             long temp = a;
             a = b;
-            b = temp + b; //same idea with for loop
-            count++;
+            b = temp + b;
+            count++; //same idea with for loop
         }
         return result;
     }
 
-    //place fibonacci sequence calculation with recursion method here
+    //generate fibonacci sequence using recursion
     private static List<Long> fibonacciRecursion(int num, long a, long b, List<Long> result) {
         if (num > 0) {
             result.add(a);
@@ -73,18 +76,19 @@ public class Fibonacci {
         return result;
     }
 
-
-    //place fibonacci sequence calculation with stream method here
-    // private static List<Long> fibonacciStream(int num) {
-    //     long a =  0, b = z1; // initalize the variables
-        
-    //     return result;
-    // }
+    //generating fibonacci sequence using stream
+    private static List<Long> fibonacciStream(int num) {
+        return Stream.iterate(new long[]{0, 1}, f -> new long[]{f[1], f[0] + f[1]})
+                .limit(num)
+                .mapToLong(f -> f[0])
+                .boxed()
+                .collect(Collectors.toList());
+    }
 
     //displaying results: method name, time taken, and Fibonacci numbers
     private static void displayResults(String method, double timeTaken, List<Long> fibonacciNumbers) {
         System.out.println("Method: " + method);
-        System.out.println("Time taken: " + timeTaken + " nanoseconds");
+        System.out.println("Time taken: " + timeTaken + " seconds");
         System.out.println("Fibonacci numbers: " + fibonacciNumbers);
         System.out.println();
     }
