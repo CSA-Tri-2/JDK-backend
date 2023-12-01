@@ -1,4 +1,5 @@
 package com.nighthawk.spring_portfolio.mvc.sortingalgs;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -131,7 +132,6 @@ class SelectionSort extends SortingAlgorithm {
     }
 }
 
-
 class MergeSort extends SortingAlgorithm {
     @Override
     public void sort(DogBreed[] array) {
@@ -200,6 +200,36 @@ class MergeSort extends SortingAlgorithm {
 
             merge(array, left, mid, right);
         }
+    }
+}
+
+class InsertionSort extends SortingAlgorithm {
+    @Override
+    public void sort(DogBreed[] array) {
+        iterations = 0;
+        comparisons = 0;
+        mergesOrSwaps = 0;
+        executionTime = 0;
+
+        executionTime = System.currentTimeMillis();
+
+        int n = array.length;
+        for (int i = 1; i < n; ++i) {
+            DogBreed key = array[i];
+            int j = i - 1;
+
+            while (j >= 0 && array[j].getBreed().compareTo(key.getBreed()) > 0) {
+                comparisons++;
+                array[j + 1] = array[j];
+                j = j - 1;
+                mergesOrSwaps++;
+                iterations++;
+            }
+            array[j + 1] = key;
+            iterations++;
+        }
+
+        executionTime = System.currentTimeMillis() - executionTime;
     }
 }
 
