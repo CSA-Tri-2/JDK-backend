@@ -8,7 +8,7 @@ public class Fibonacci {
         Scanner scanner = new Scanner(System.in);  //scanner used for input on how many numbers for fibonacci
         System.out.print("Enter the number of Fibonacci numbers to generate: ");
         int num = scanner.nextInt();
-
+        scanner.close();
         List<Long> fibonacciNumbers; //declaring a variable with a list of "long" objects
 
         //measures time taken for each for loop
@@ -24,6 +24,11 @@ public class Fibonacci {
         displayResults("While Loop", (endTime - startTime) / 1e9, fibonacciNumbers); //divided by 1e9 to convert to seconds
 
         //insert recursion loop
+        startTime = System.nanoTime();
+        List<Long> result = new ArrayList<>();
+        fibonacciNumbers = fibonacciRecursion(num, 0, 1, result);
+        endTime = System.nanoTime();
+        displayResults("Recursion Loop", (endTime - startTime) / 1e9, fibonacciNumbers);
 
         //insert stream loop
 
@@ -57,6 +62,14 @@ public class Fibonacci {
     }
 
     //place fibonacci sequence calculation with recursion method here
+    private static List<Long> fibonacciRecursion(int num, long a, long b, List<Long> result) {
+        if (num > 0) {
+            result.add(a);
+            fibonacciRecursion(num - 1, b, a + b, result);
+        }
+        return result;
+    }
+
 
     //place fibonacci sequence calculation with stream method here
 
