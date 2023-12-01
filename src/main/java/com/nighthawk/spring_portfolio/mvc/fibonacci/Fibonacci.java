@@ -30,13 +30,13 @@ public class Fibonacci {
         startTime = System.nanoTime();
         fibonacciNumbers = fibonacciRecursion(num, 0, 1, new ArrayList<>());
         endTime = System.nanoTime();
-        displayResults("Recursion Loop", (endTime - startTime) / 1e9, fibonacciNumbers);
+        displayResults("Recursion Loop", (endTime - startTime), fibonacciNumbers);
 
         //measure time taken for stream loop
         startTime = System.nanoTime();
         fibonacciNumbers = fibonacciStream(num);
         endTime = System.nanoTime();
-        displayResults("Stream Loop", (endTime - startTime) / 1e9, fibonacciNumbers);
+        displayResults("Stream Loop", (endTime - startTime), fibonacciNumbers);
     }
 
     //generate Fibonacci sequence using for loop
@@ -88,7 +88,7 @@ public class Fibonacci {
     //displaying results: method name, time taken, and Fibonacci numbers
     private static void displayResults(String method, double timeTaken, List<Long> fibonacciNumbers) {
         System.out.println("Method: " + method);
-        System.out.println("Time taken: " + timeTaken + " seconds");
+        System.out.println("Time taken: " + timeTaken + " nanoseconds");
         System.out.println("Fibonacci numbers: " + fibonacciNumbers);
         System.out.println();
     }
