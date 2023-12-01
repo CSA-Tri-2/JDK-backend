@@ -58,11 +58,11 @@ class DogBreed {
     @Override
     public String toString() {
         return "DogBreed{" +
-                "id=" + id +
-                ", breed='" + breed + '\'' +
-                ", origin='" + origin + '\'' +
-                ", url='" + url + '\'' +
-                ", img='" + img + '\'' +
+                "id:" + id +
+                ", breed:'" + breed + '\'' +
+                ", origin:'" + origin + '\'' +
+                ", url:'" + url + '\'' +
+                ", img:'" + img + '\'' +
                 '}';
     }
 }
@@ -208,7 +208,7 @@ public class SortingAlgs {
         try {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create("https://dog-breeds2.p.rapidapi.com/dog_breeds"))
-                    .header("X-RapidAPI-Key", "1748ee8916mshe4a05c6edb7af0ap1399f4jsn23f82b0ddfa3")
+                    .header("X-RapidAPI-Key", "48e23c6bf3msh9a6baf3e68d9a4ep14546ajsn1a39e98c4ad5")
                     .header("X-RapidAPI-Host", "dog-breeds2.p.rapidapi.com")
                     .method("GET", HttpRequest.BodyPublishers.noBody())
                     .build();
