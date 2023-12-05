@@ -137,7 +137,11 @@ public class Fibonacci {//fibonacci class to demonstrate and compare different F
                 }
             } catch (Exception e) {
                 System.out.print("Invalid input. Please enter a positive integer: "); //will catch invalid input such as negative number or letter
+<<<<<<< HEAD
                 scanner.next(); // consume invalid input
+=======
+                scanner.next(); //consume invalid input
+>>>>>>> 0580bdf (fix space)
             }
         }
         scanner.close();
