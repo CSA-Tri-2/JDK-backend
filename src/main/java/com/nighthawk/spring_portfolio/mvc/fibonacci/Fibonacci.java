@@ -6,9 +6,8 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-abstract class FibonacciBase {
-    // Method to calculate Fibonacci numbers and measure time
-    public List<Long> calculateFibonacci(int num) {
+abstract class FibonacciBase {//abstract class providing common functionality for Fibonacci implementations
+    public List<Long> calculateFibonacci(int num) {//method to calculate Fibonacci numbers and measure time
         long startTime = System.nanoTime();
         List<Long> fibonacciNumbers = performFibonacciCalculation(num);
         long endTime = System.nanoTime();
@@ -16,22 +15,19 @@ abstract class FibonacciBase {
         return fibonacciNumbers;
     }
 
-    // Abstract method to be implemented by subclasses
-    protected abstract List<Long> performFibonacciCalculation(int num);
+    protected abstract List<Long> performFibonacciCalculation(int num); //abstract method to be implemented by subclasses
 
-    // Abstract method to get the method name
-    protected abstract String getMethodName();
+    protected abstract String getMethodName(); //abstract method to get the method name
 
-    // Display results method
-    private static void displayResults(String method, double timeTaken, List<Long> fibonacciNumbers) {
+    private static void displayResults(String method, double timeTaken, List<Long> fibonacciNumbers) {//displaying results method
         System.out.println("Method: " + method);
-        System.out.println("Time taken: " + timeTaken / 1e6 + " milliseconds"); // convert to milliseconds
+        System.out.println("Time taken: " + timeTaken / 1e6 + " milliseconds"); //convert to milliseconds
         System.out.println("Fibonacci numbers: " + fibonacciNumbers);
         System.out.println();
     }
 }
 
-class FibonacciFor extends FibonacciBase {
+class FibonacciFor extends FibonacciBase {//implementation of FibonacciBase using a for loop
     @Override
     protected List<Long> performFibonacciCalculation(int num) {
         List<Long> result = new ArrayList<>();
@@ -51,7 +47,7 @@ class FibonacciFor extends FibonacciBase {
     }
 }
 
-class FibonacciWhile extends FibonacciBase {
+class FibonacciWhile extends FibonacciBase {//implementation of FibonacciBase class using a while loop
     @Override
     protected List<Long> performFibonacciCalculation(int num) {
         List<Long> result = new ArrayList<>();
@@ -73,7 +69,7 @@ class FibonacciWhile extends FibonacciBase {
     }
 }
 
-class FibonacciRecursion extends FibonacciBase {
+class FibonacciRecursion extends FibonacciBase {//implementation of FibonacciBase using recursion
     @Override
     protected List<Long> performFibonacciCalculation(int num) {
         List<Long> result = new ArrayList<>();
@@ -81,7 +77,7 @@ class FibonacciRecursion extends FibonacciBase {
         return result;
     }
 
-    private static void fibonacciRecursionStructure(int num, long a, long b, List<Long> result) {
+    private static void fibonacciRecursionStructure(int num, long a, long b, List<Long> result) {//helper method for recursive calculation
         if (num > 0) {
             result.add(a);
             fibonacciRecursionStructure(num - 1, b, a + b, result);
@@ -94,14 +90,14 @@ class FibonacciRecursion extends FibonacciBase {
     }
 }
 
-class FibonacciStream extends FibonacciBase {
+class FibonacciStream extends FibonacciBase {//implementation of FibonacciBase using Java Streams
     @Override
     protected List<Long> performFibonacciCalculation(int num) {
-        return java.util.stream.Stream.iterate(new long[]{0, 1}, f -> new long[]{f[1], f[0] + f[1]})
+        return Stream.iterate(new long[]{0, 1}, f -> new long[]{f[1], f[0] + f[1]})
                 .limit(num)
                 .mapToLong(f -> f[0])
                 .boxed()
-                .collect(java.util.stream.Collectors.toList());
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -110,25 +106,25 @@ class FibonacciStream extends FibonacciBase {
     }
 }
 
-public class Fibonacci {
+public class Fibonacci {//fibonacci class to demonstrate and compare different Fibonacci implementations
     public static void main(String[] args) {
         int num = getUserInput();
 
-        FibonacciBase fibonacciFor = new FibonacciFor();
+        FibonacciBase fibonacciFor = new FibonacciFor();//instantiate and calculate Fibonacci using For Loop
         fibonacciFor.calculateFibonacci(num);
 
-        FibonacciBase fibonacciWhile = new FibonacciWhile();
+        FibonacciBase fibonacciWhile = new FibonacciWhile();//same for while loop
         fibonacciWhile.calculateFibonacci(num);
 
-        FibonacciBase fibonacciRecursion = new FibonacciRecursion();
+        FibonacciBase fibonacciRecursion = new FibonacciRecursion();//same for recursion loop
         fibonacciRecursion.calculateFibonacci(num);
 
-        FibonacciBase fibonacciStream = new FibonacciStream();
+        FibonacciBase fibonacciStream = new FibonacciStream();//same for stream loop
         fibonacciStream.calculateFibonacci(num);
     }
 
     private static int getUserInput() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in); //scanner for number fo Fibonacci numbers user wants to input
         System.out.print("Enter the number of Fibonacci numbers to generate: ");
         int num;
         while (true) {
@@ -137,10 +133,10 @@ public class Fibonacci {
                 if (num > 0) {
                     break;
                 } else {
-                    System.out.print("Please enter a positive integer: ");
+                    System.out.print("Please enter a positive integer: "); //asking only for positive integer
                 }
             } catch (Exception e) {
-                System.out.print("Invalid input. Please enter a positive integer: ");
+                System.out.print("Invalid input. Please enter a positive integer: "); //will catch invalid input such as negative number or letter
                 scanner.next(); // consume invalid input
             }
         }
