@@ -16,37 +16,33 @@ public class FibonacciController {
     @GetMapping("/for/{num}")
     public FibonacciResponses fibonacciFor(@PathVariable int num) {
         System.out.println("Received request for fibonacciFor with num: " + num);
-        return calculateFibonacci("For Loop", Fibonacci::fibonacciFor, num);
+        return calculateFibonacci(new FibonacciFor(), num);
     }
 
     @GetMapping("/while/{num}")
     public FibonacciResponses fibonacciWhile(@PathVariable int num) {
         System.out.println("Received request for fibonacciWhile with num: " + num);
-        return calculateFibonacci("While Loop", Fibonacci::fibonacciWhile, num);
+        return calculateFibonacci(new FibonacciWhile(), num);
     }
 
     @GetMapping("/recursion/{num}")
     public FibonacciResponses fibonacciRecursion(@PathVariable int num) {
         System.out.println("Received request for fibonacciRecursion with num: " + num);
-        return calculateFibonacci("Recursion Loop", Fibonacci::fibonacciRecursion, num);
+        return calculateFibonacci(new FibonacciRecursion(), num);
     }
 
     @GetMapping("/stream/{num}")
     public FibonacciResponses fibonacciStream(@PathVariable int num) {
         System.out.println("Received request for fibonacciStream with num: " + num);
-        return calculateFibonacci("Stream Loop", Fibonacci::fibonacciStream, num);
+        return calculateFibonacci(new FibonacciStream(), num);
     }
 
-    private FibonacciResponses calculateFibonacci(String method, FibonacciFunction fibonacciFunction, int num) {
+    private FibonacciResponses calculateFibonacci(FibonacciBase fibonacciAlgorithm, int num) {
         long startTime = System.nanoTime();
-        List<Long> fibonacciNumbers = fibonacciFunction.calculate(num);
+        List<Long> fibonacciNumbers = fibonacciAlgorithm.calculateFibonacci(num);
         long endTime = System.nanoTime();
         double timeTaken = (endTime - startTime);
 
-        return new FibonacciResponses(method, timeTaken, fibonacciNumbers);
-    }
-
-    private interface FibonacciFunction {
-        List<Long> calculate(int num);
+        return new FibonacciResponses(fibonacciAlgorithm.getMethodName(), timeTaken, fibonacciNumbers);
     }
 }
