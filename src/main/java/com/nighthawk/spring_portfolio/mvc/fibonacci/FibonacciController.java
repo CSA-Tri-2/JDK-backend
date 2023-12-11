@@ -63,7 +63,7 @@ public class FibonacciController {
         List<String> intermediateSteps = new ArrayList<>();
 
         for (int i = 0; i < fibonacciNumbers.size(); i++) {
-            intermediateSteps.add("Step " + (i + 1) + ": " + fibonacciNumbers.get(i));
+            intermediateSteps.add(" Step " + (i + 1) + ": " + fibonacciNumbers.get(i));
         }
 
         return intermediateSteps;
