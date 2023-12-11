@@ -82,7 +82,7 @@ public class SecurityConfig {
 					.addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Headers", "Content-Type", "Authorization", "x-csrf-token"))
 					.addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-MaxAge", "600"))
 					.addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Methods", "POST", "GET", "OPTIONS", "HEAD"))
-					.addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Origin", "http://localhost:4200", "http://localhost:4000", "https://csa-tri-2.github.io", "http://localhost:8799", "http://localhost:4200/BlogCSA/2023/11/30/fibotester.html"))
+					.addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Origin", "http://localhost:4200", "http://localhost:4000", "https://csa-tri-2.github.io", "http://localhost:8799", "http://localhost:4200/BlogCSA/2023/11/30/fibotester.html", "https://csa-tri-2.github.io/JDK-miniproject/fibonacci"))
 					//.addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Origin", "https://nighthawkcoders.github.io", "http://localhost:4000"))
 				)
 				.formLogin(form -> form 

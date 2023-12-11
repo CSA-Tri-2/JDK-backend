@@ -13,7 +13,7 @@ import org.springframework.http.HttpStatus;
 
 @RestController
 @RequestMapping("/api/fibonacci")
-@CrossOrigin(origins = {"http://localhost:4200", "http://127.0.0.1:4200", "https://csa-tri-2.github.io/JDK-miniproject/fibonacci"})
+@CrossOrigin(origins = {"http://localhost:4200", "http://127.0.0.1:4200", "https://csa-tri-2.github.io/JDK-miniproject/fibonacci", "https://csa-tri-2.github.io"})
 public class FibonacciController {
 
     @GetMapping("/for/{num}")
