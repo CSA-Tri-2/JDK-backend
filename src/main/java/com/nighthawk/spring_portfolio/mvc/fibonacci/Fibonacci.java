@@ -23,6 +23,10 @@ abstract class FibonacciBase {//abstract class providing common functionality fo
         System.out.println("Method: " + method);
         System.out.println("Time taken: " + timeTaken / 1e6 + " milliseconds"); //convert to milliseconds
         System.out.println("Fibonacci numbers: " + fibonacciNumbers);
+                for (int i = 0; i < fibonacciNumbers.size(); i++) {
+            System.out.println("Step " + (i + 1) + ": " + fibonacciNumbers.get(i));
+        }
+
         System.out.println();
     }
 }
