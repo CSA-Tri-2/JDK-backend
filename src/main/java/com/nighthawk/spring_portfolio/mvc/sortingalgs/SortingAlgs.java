@@ -147,7 +147,7 @@ class MergeSort extends SortingAlgorithm {
         executionTime = System.currentTimeMillis() - executionTime;
     }
 
-    private void merge(DogBreed[] array, int left, int mid, int right) {
+    private void merge(DogBreed[] array, int left, int mid, int right) { //this is the merge sorting algorithmsfor the dog breed but we suing the covid api now so like but we still ned to twork on it retropective
         int n1 = mid - left + 1;
         int n2 = right - mid;
 
