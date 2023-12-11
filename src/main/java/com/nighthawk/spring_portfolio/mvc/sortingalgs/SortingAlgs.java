@@ -189,7 +189,7 @@ class MergeSort extends SortingAlgorithm {
             k++;
             mergesOrSwaps++;
         }
-    }
+    } 
 
     private void mergeSort(DogBreed[] array, int left, int right) {
         if (left < right) {
