@@ -19,25 +19,25 @@ public class FibonacciController {
     @GetMapping("/for/{num}")
     public ResponseEntity<FibonacciResponses> fibonacciFor(@PathVariable int num) {
         System.out.println("Received request for fibonacciFor with num: " + num); // confirmation for "for" request
-        return calculateFibonacci(new FibonacciFor(), num);
+        return calculateFibonacci(new FibonacciFor(), num); // calls the FibonacciFor procedure
     }
 
     @GetMapping("/while/{num}")
     public ResponseEntity<FibonacciResponses> fibonacciWhile(@PathVariable int num) {
         System.out.println("Received request for fibonacciWhile with num: " + num); // confirmation for "while" request
-        return calculateFibonacci(new FibonacciWhile(), num);
+        return calculateFibonacci(new FibonacciWhile(), num); // calls the FibonacciWhile procedure
     }
 
     @GetMapping("/recursion/{num}")
     public ResponseEntity<FibonacciResponses> fibonacciRecursion(@PathVariable int num) {
         System.out.println("Received request for fibonacciRecursion with num: " + num); // confirmation for "recursion" request
-        return calculateFibonacci(new FibonacciRecursion(), num);
+        return calculateFibonacci(new FibonacciRecursion(), num); // calls the FibonacciRecursion procedure
     }
 
     @GetMapping("/stream/{num}")
     public ResponseEntity<FibonacciResponses> fibonacciStream(@PathVariable int num) {
         System.out.println("Received request for fibonacciStream with num: " + num); // confirmation for "stream" request
-        return calculateFibonacci(new FibonacciStream(), num);
+        return calculateFibonacci(new FibonacciStream(), num); // calls the FibonacciStream procedure
     }
 
     private ResponseEntity<FibonacciResponses> calculateFibonacci(FibonacciBase fibonacciAlgorithm, int num) {

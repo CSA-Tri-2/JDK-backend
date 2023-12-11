@@ -6,7 +6,7 @@ public class FibonacciResponses {
     private String method;
     private double timeTaken;
     private List<Long> fibonacciNumbers;
-    private List<String> intermediateSteps; // New field for intermediate steps
+    private List<String> intermediateSteps;
 
     public FibonacciResponses(String method, double timeTaken, List<Long> fibonacciNumbers, List<String> intermediateSteps) {
         this.method = method;
