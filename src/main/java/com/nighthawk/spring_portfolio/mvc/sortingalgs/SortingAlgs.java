@@ -147,7 +147,7 @@ class MergeSort extends SortingAlgorithm {
         executionTime = System.currentTimeMillis() - executionTime;
     }
 
-    private void merge(DogBreed[] array, int left, int mid, int right) {
+    private void merge(DogBreed[] array, int left, int mid, int right) { 
         int n1 = mid - left + 1;
         int n2 = right - mid;
 
@@ -189,7 +189,7 @@ class MergeSort extends SortingAlgorithm {
             k++;
             mergesOrSwaps++;
         }
-    }
+    } 
 
     private void mergeSort(DogBreed[] array, int left, int right) {
         if (left < right) {
