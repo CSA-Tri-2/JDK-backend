@@ -5,29 +5,26 @@
       layout:decorate="~{layouts/base}" lang="en">
 
 <head>
-    <title>Intro</title>
+    <title>JDK Backend Home</title>
 </head>
 
 <body>
 <th:block layout:fragment="body" th:remove="tag">
     <!-- Start of body content specific to page -->
     <div class="px-5 py-5 mx-auto">
-        <h1><strong>Java Home Page</strong></h1>
+        <h1><strong>JDK Mini Project Backend Home Page</strong></h1>
         <div class="row">
             <div class="col-4">
                 <div class="card">
                     <img class="card-img-top" th:src="@{/images/java.png}" alt="Java Development" height="250">
                     <div class="card-body">
-                    <h5 class="card-title">What should Java Developers learn?</h5>
+                    <h5 class="card-title">Fibonacci Loops</h5>
                     <p class="card-text">
-                        <ol>
-                            <li>Java 11-17 is used for PBL. Java 8 appears to be College Board standard.  Java features like Reactive Streams, HTTP2 client, JShell, React JS are more recent than 8.</li>
-                            <li>GitHub.  Learning to master managing change, branches, pull requests, and more.</li>
-                            <li>Development DevOps. Java programmers should have a passion for managing the environment and learning automation (Git, Maven, Docker).</li>
-                            <li>REST and Microservice using Spring.  Mastering creating and consuming RESTful APIs</li>
-                        </ol>
+                        <a href="/api/fibonacci/for/10" class="btn btn-primary">Go to the "For" fibonacci</a>
+                        <a href="/api/fibonacci/while/10" class="btn btn-primary">Go to the "While" fibonacci</a>
+                        <a href="/api/fibonacci/recursion/10" class="btn btn-primary">Go to the "Recursion" fibonacci</a>
+                        <a href="/api/fibonacci/stream/10" class="btn btn-primary">Go to the "Stream" fibonacci</a>
                     </p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
                 </div>
             </div>
@@ -35,16 +32,17 @@
                 <div class="card">
                     <img class="card-img-top" th:src="@{/images/spring.png}" alt="Spring Development" height="250">
                     <div class="card-body">
-                    <h5 class="card-title">What is Spring?</h5>
+                    <h5 class="card-title">How to use this page?</h5>
                     <p class="card-text">
                         <ol>
-                            <li>Spring Framework is the most popular application development framework of Java. </li>
-                            <li>Spring Boot helps to create a stand-alone application with less configuration.</li>
-                            <li>Spring MVC is a model view controller-based web framework under the Spring framework.</li>
-                            <li>ThymeLeaf is a server-side Java template engine, supports HTML5 JVM web development, and provides full integration with Spring Framework.</li>
+                            <li>For the Fibonacci, change the x value after /"method"/x to generate a list with a length of your choice. </li>
+                            <li>The different methods currently implemented for fibonacci are: For, While, Recursion, and Stream</li>
+                            <li>Sorting algorithms is currently in progress of being created</li>
+                            <li>You can access the frontends on the link below.</li>
                         </ol>
                     </p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <a href="https://csa-tri-2.github.io/JDK-miniproject/fibonacci" class="btn btn-primary">Go to Fibonacci Frontend</a>
+                    <a href="#" class="btn btn-primary">Go to Sorting Frontend</a>
                     </div>
                 </div>
             </div>
@@ -52,16 +50,13 @@
                 <div class="card">
                     <img class="card-img-top" th:src="@{/images/pojo.jpeg}" alt="Java Persistence" height="250">
                     <div class="card-body">
-                    <h5 class="card-title">How do you create Persistent data?</h5>
+                    <h5 class="card-title">Sorting Algorithms</h5>
                     <p class="card-text">
-                        <ol>
-                            <li>Java Persistent API (JPA) provides a query language that allows create, read, update, and delete objects from a database.</li>
-                            <li>Beans, Controller Code, and Business logic interact with the JPA to manage data in and out of the Database.</li>
-                            <li>An Object-Relational Model (ORM) mapping Java classes (entities + supporting structures) with a relational database</li>
-                            <li>Plain Old Java Objects (POJO) are the Class definitions that are foundations for JPA and ORM, see the @entity declaration over the Class definition.</li>
-                        </ol>
+                        <a href="#" class="btn btn-primary">Go to the "Merge" sorting algorithm</a>
+                        <a href="#" class="btn btn-primary">Go to the "Selection" sorting algorithm</a>
+                        <a href="#" class="btn btn-primary">Go to the "Bubble" sorting algorithm</a>
+                        <a href="#" class="btn btn-primary">Go to the "Insertion" sorting algorithm</a>
                     </p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
                 </div>
             </div>
