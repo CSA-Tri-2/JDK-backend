@@ -4,6 +4,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Arrays;
 
 class SortingAlgorithm {
     protected int iterations;
@@ -31,46 +32,56 @@ class SortingAlgorithm {
         System.out.println("Merges/Swaps: " + mergesOrSwaps);
         System.out.println("Execution Time: " + executionTime + " milliseconds");
     }
+    
+    public Covid[] sort(Covid[] array) {
+        // Create a copy of the original array
+        Covid[] sortedArray = Arrays.copyOf(array, array.length);
 
-    public void sort(DogBreed[] array) {
+        // Call the overridden sort method
+        sorter(sortedArray);
+
+        return sortedArray;
+    }
+
+    public void sorter(Covid[] array) {
         // This method should be overridden by each sorting algorithm class
     }
 }
 
-class DogBreed {
-    private int id;
-    private String breed;
-    private String origin;
-    private String url;
-    private String img;
+class Covid {
+    private String country;
+    private Integer population;
+    private Integer cases;
+    private Integer deaths;
+    private Integer tests;
 
-    public DogBreed(int id, String breed, String origin, String url, String img) {
-        this.id = id;
-        this.breed = breed;
-        this.origin = origin;
-        this.url = url;
-        this.img = img;
+    public Covid(String country, Integer population, Integer cases, Integer deaths, Integer tests) {
+        this.country = country;
+        this.population = population;
+        this.cases = cases;
+        this.deaths = deaths;
+        this.tests = tests;
     }
 
-    public String getBreed() {
-        return breed;
+    public Integer getDeaths() {
+        return deaths;
     }
 
     @Override
     public String toString() {
-        return "DogBreed{" +
-                "id:" + id +
-                ", breed:'" + breed + '\'' +
-                ", origin:'" + origin + '\'' +
-                ", url:'" + url + '\'' +
-                ", img:'" + img + '\'' +
+        return "Covid{" +
+                "country:" + country +
+                ", population:'" + population + '\'' +
+                ", cases:'" + cases + '\'' +
+                ", deaths:'" + deaths + '\'' +
+                ", tests:'" + tests + '\'' +
                 '}';
     }
 }
 
 class BubbleSort extends SortingAlgorithm {
     @Override
-    public void sort(DogBreed[] array) {
+    public void sorter(Covid[] array) {
         iterations = 0;
         comparisons = 0;
         mergesOrSwaps = 0;
@@ -82,9 +93,9 @@ class BubbleSort extends SortingAlgorithm {
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - i - 1; j++) {
                 comparisons++;
-                if (array[j].getBreed().compareTo(array[j + 1].getBreed()) > 0) {
+                if (array[j].getDeaths().compareTo(array[j + 1].getDeaths()) > 0) {
                     // Swap array[j] and array[j+1]
-                    DogBreed temp = array[j];
+                    Covid temp = array[j];
                     array[j] = array[j + 1];
                     array[j + 1] = temp;
 
@@ -100,7 +111,7 @@ class BubbleSort extends SortingAlgorithm {
 
 class SelectionSort extends SortingAlgorithm {
     @Override
-    public void sort(DogBreed[] array) {
+    public void sorter(Covid[] array) {
         iterations = 0;
         comparisons = 0;
         mergesOrSwaps = 0;
@@ -114,14 +125,14 @@ class SelectionSort extends SortingAlgorithm {
             int minIndex = i;
             for (int j = i + 1; j < n; j++) {
                 comparisons++;
-                if (array[j].getBreed().compareTo(array[minIndex].getBreed()) < 0) {
+                if (array[j].getDeaths().compareTo(array[minIndex].getDeaths()) < 0) {
                     minIndex = j;
                 }
                 iterations++;
             }
 
             // Swap array[i] and array[minIndex]
-            DogBreed temp = array[i];
+            Covid temp = array[i];
             array[i] = array[minIndex];
             array[minIndex] = temp;
 
@@ -134,7 +145,7 @@ class SelectionSort extends SortingAlgorithm {
 
 class MergeSort extends SortingAlgorithm {
     @Override
-    public void sort(DogBreed[] array) {
+    public void sorter(Covid[] array) {
         iterations = 0;
         comparisons = 0;
         mergesOrSwaps = 0;
@@ -147,12 +158,12 @@ class MergeSort extends SortingAlgorithm {
         executionTime = System.currentTimeMillis() - executionTime;
     }
 
-    private void merge(DogBreed[] array, int left, int mid, int right) { 
+    private void merge(Covid[] array, int left, int mid, int right) { 
         int n1 = mid - left + 1;
         int n2 = right - mid;
 
-        DogBreed[] leftArray = new DogBreed[n1];
-        DogBreed[] rightArray = new DogBreed[n2];
+        Covid[] leftArray = new Covid[n1];
+        Covid[] rightArray = new Covid[n2];
 
         for (int i = 0; i < n1; ++i) {
             leftArray[i] = array[left + i];
@@ -165,7 +176,7 @@ class MergeSort extends SortingAlgorithm {
         int k = left;
         while (i < n1 && j < n2) {
             comparisons++;
-            if (leftArray[i].getBreed().compareTo(rightArray[j].getBreed()) <= 0) {
+            if (leftArray[i].getDeaths().compareTo(rightArray[j].getDeaths()) <= 0) {
                 array[k] = leftArray[i];
                 i++;
             } else {
@@ -191,7 +202,7 @@ class MergeSort extends SortingAlgorithm {
         }
     } 
 
-    private void mergeSort(DogBreed[] array, int left, int right) {
+    private void mergeSort(Covid[] array, int left, int right) {
         if (left < right) {
             int mid = (left + right) / 2;
 
@@ -205,7 +216,7 @@ class MergeSort extends SortingAlgorithm {
 
 class InsertionSort extends SortingAlgorithm {
     @Override
-    public void sort(DogBreed[] array) {
+    public void sorter(Covid[] array) {
         iterations = 0;
         comparisons = 0;
         mergesOrSwaps = 0;
@@ -215,10 +226,10 @@ class InsertionSort extends SortingAlgorithm {
 
         int n = array.length;
         for (int i = 1; i < n; ++i) {
-            DogBreed key = array[i];
+            Covid key = array[i];
             int j = i - 1;
 
-            while (j >= 0 && array[j].getBreed().compareTo(key.getBreed()) > 0) {
+            while (j >= 0 && array[j].getDeaths().compareTo(key.getDeaths()) > 0) {
                 comparisons++;
                 array[j + 1] = array[j];
                 j = j - 1;
@@ -237,29 +248,61 @@ public class SortingAlgs {
     public static void main(String[] args) {
         try {
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("https://dog-breeds2.p.rapidapi.com/dog_breeds"))
-                    .header("X-RapidAPI-Key", "48e23c6bf3msh9a6baf3e68d9a4ep14546ajsn1a39e98c4ad5")
-                    .header("X-RapidAPI-Host", "dog-breeds2.p.rapidapi.com")
+                    .uri(URI.create("https://covid-193.p.rapidapi.com/statistics"))
+                    .header("X-RapidAPI-Key", "1748ee8916mshe4a05c6edb7af0ap1399f4jsn23f82b0ddfa3")
+                    .header("X-RapidAPI-Host", "covid-193.p.rapidapi.com")
                     .method("GET", HttpRequest.BodyPublishers.noBody())
                     .build();
 
             HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-
-            // Parse the response body into an array of DogBreed objects
-            DogBreed[] dogBreeds = parseResponse(response.body());
-
+            // System.out.println(response.body());
+            // Parse the response body into an array of Covid objects
+            Covid[] unsortedcovids = parseResponse(response.body());
+            
+            for (Covid covid : unsortedcovids) {
+                System.out.println(covid);
+            }
             // Create an instance of the sorting algorithm
-            SortingAlgorithm sortingAlgorithm = new BubbleSort();
+            SortingAlgorithm bubbleSortingAlgorithm = new BubbleSort();
 
             // Sort the array of dog breeds
-            sortingAlgorithm.sort(dogBreeds);
+            Covid[] bubbleCovids = bubbleSortingAlgorithm.sort(unsortedcovids);
 
             // Display sorting statistics
-            sortingAlgorithm.displayStatistics();
+            System.out.println("Bubble");
+            bubbleSortingAlgorithm.displayStatistics();
 
+            SortingAlgorithm selectionSortingAlgorithm = new SelectionSort();
+
+            // Sort the array of dog breeds
+            Covid[] selectionCovids = selectionSortingAlgorithm.sort(unsortedcovids);
+
+            // Display sorting statistics
+            System.out.println("Selection");
+            selectionSortingAlgorithm.displayStatistics();
+
+            SortingAlgorithm mergSortingAlgorithm = new MergeSort();
+
+            // Sort the array of dog breeds
+            Covid[] mergeCovids = mergSortingAlgorithm.sort(unsortedcovids);
+
+            // Display sorting statistics
+            System.out.println("Merge");
+            mergSortingAlgorithm.displayStatistics();
+            
+
+            SortingAlgorithm insertionSortingAlgorithm = new InsertionSort();
+
+            // Sort the array of dog breeds
+            Covid[] insertionCovids = insertionSortingAlgorithm.sort(unsortedcovids);
+
+            // Display sorting statistics
+            System.out.println("Insertion");
+            insertionSortingAlgorithm.displayStatistics();
+            
             // Print the sorted dog breeds
-            for (DogBreed breed : dogBreeds) {
-                System.out.println(breed);
+            for (Covid deaths : insertionCovids) {
+                System.out.println(deaths);
             }
 
         } catch (Exception e) {
@@ -267,21 +310,59 @@ public class SortingAlgs {
         }
     }
 
-    private static DogBreed[] parseResponse(String responseBody) {
-        // Parse the response body into an array of DogBreed objects
+    private static Covid[] parseResponse(String responseBody) {
+        // Parse the response body into an array of Covid objects
         // Example parsing logic: (You may need to adapt this based on the actual response format)
-        String[] lines = responseBody.split("\n");
-        DogBreed[] dogBreeds = new DogBreed[lines.length];
-        for (int i = 0; i < lines.length; i++) {
-            String[] parts = lines[i].split(":");
-            int id = Integer.parseInt(parts[1]);
-            String breed = parts[3].replace("\"", "");
-            String origin = parts[5].replace("\"", "");
-            String url = parts[7].replace("\"", "");
-            String img = parts[9].replace("\"", "");
-            dogBreeds[i] = new DogBreed(id, breed, origin, url, img);
+        String[] lines = responseBody.split("continent");
+
+        // for (int i = 0; i < lines.length; i++) {
+        //     System.out.println("AAAAAAAAA"+lines[i]);
+        // }
+        Covid[] covids = new Covid[lines.length];
+        for (int i = 1; i < lines.length; i++) {
+            // System.out.println("AAAAAAAAA"+lines[i]);
+            String[] parts = lines[i].split(",");
+            // System.out.println(parts[1]);
+            // System.out.println(parts[2]);
+            // System.out.println(parts[8]);
+            // System.out.println(parts[11]);
+            // System.out.println(parts[13]);
+            String country = parts[1].replace("\"country\":", "");
+            // System.out.println(country);
+            String poptemp = parts[2].replace("\"population\":", "");
+            // System.out.println(poptemp);
+            if(poptemp.equals("null")){
+                poptemp = "0";
+            }
+            Integer population = Integer.parseInt(poptemp);
+            String casesTemp = parts[8].replace("\"total\":", "");
+            // System.out.println(casesTemp);
+            String casesm = casesTemp.substring(0, casesTemp.length()-1);
+            if(casesm.equals("null")){
+                casesm = "0";
+            }
+            Integer cases = Integer.parseInt(casesm);
+            // System.out.println(cases);
+            String deathsTemp = parts[11].replace("\"total\":", "");
+            // System.out.println(deathsTemp);
+            String deathsm = deathsTemp.substring(0, deathsTemp.length()-1);
+            if(deathsm.equals("null")){
+                deathsm = "0";
+            }
+            Integer deaths = Integer.parseInt(deathsm);
+            // System.out.println(deaths);
+            String testsTemp = parts[13].replace("\"total\":", "");
+            // System.out.println(testsTemp);
+            String testsm = testsTemp.substring(0, testsTemp.length()-1);
+            if(testsm.equals("null")){
+                testsm = "0";
+            }
+            Integer tests = Integer.parseInt(testsm);
+            // System.out.println(tests);
+            covids[i] = new Covid(country, population, cases, deaths, tests);
         }
-        return dogBreeds;
+        covids = Arrays.copyOfRange(covids, 1, covids.length);
+        return covids;
     }
 }
 //test
