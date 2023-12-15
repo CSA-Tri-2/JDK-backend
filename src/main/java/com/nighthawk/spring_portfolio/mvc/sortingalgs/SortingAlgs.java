@@ -46,6 +46,22 @@ class SortingAlgorithm {
     public void sorter(Covid[] array) {
         // This method should be overridden by each sorting algorithm class
     }
+
+	public int getComparisons() {
+		return 0;
+	}
+
+    public int getMergesOrSwaps() {
+        return 0;
+    }
+
+    public int getIterations() {
+        return 0;
+    }
+
+    public long getExecutionTime() {
+        return 0;
+    }
 }
 
 class Covid {
