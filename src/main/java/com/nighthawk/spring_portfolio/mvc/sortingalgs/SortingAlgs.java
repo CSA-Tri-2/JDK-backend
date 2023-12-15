@@ -48,19 +48,19 @@ class SortingAlgorithm {
     }
 
 	public int getComparisons() {
-		return 0;
+		return comparisons;
 	}
 
     public int getMergesOrSwaps() {
-        return 0;
+        return mergesOrSwaps;
     }
 
     public int getIterations() {
-        return 0;
+        return iterations;
     }
 
     public long getExecutionTime() {
-        return 0;
+        return executionTime;
     }
 }
 
@@ -95,6 +95,7 @@ class Covid {
     }
 }
 
+
 class BubbleSort extends SortingAlgorithm {
     @Override
     public void sorter(Covid[] array) {
@@ -103,7 +104,7 @@ class BubbleSort extends SortingAlgorithm {
         mergesOrSwaps = 0;
         executionTime = 0;
 
-        executionTime = System.currentTimeMillis();
+        long startTime = System.nanoTime();
 
         int n = array.length;
         for (int i = 0; i < n - 1; i++) {
@@ -121,7 +122,8 @@ class BubbleSort extends SortingAlgorithm {
             }
         }
 
-        executionTime = System.currentTimeMillis() - executionTime;
+        long endTime = System.nanoTime();
+        executionTime = endTime - startTime;
     }
 }
 
@@ -133,7 +135,7 @@ class SelectionSort extends SortingAlgorithm {
         mergesOrSwaps = 0;
         executionTime = 0;
 
-        executionTime = System.currentTimeMillis();
+        long startTime = System.nanoTime();
 
         int n = array.length;
 
@@ -155,7 +157,8 @@ class SelectionSort extends SortingAlgorithm {
             mergesOrSwaps++;
         }
 
-        executionTime = System.currentTimeMillis() - executionTime;
+        long endTime = System.nanoTime();
+        executionTime = endTime - startTime;
     }
 }
 
@@ -167,12 +170,13 @@ class MergeSort extends SortingAlgorithm {
         mergesOrSwaps = 0;
         executionTime = 0;
 
-        executionTime = System.currentTimeMillis();
+        long startTime = System.nanoTime();
 
         mergeSort(array, 0, array.length - 1);
 
-        executionTime = System.currentTimeMillis() - executionTime;
-    }
+        long endTime = System.nanoTime();
+        executionTime = endTime - startTime;
+}
 
     private void merge(Covid[] array, int left, int mid, int right) { 
         int n1 = mid - left + 1;
@@ -238,7 +242,7 @@ class InsertionSort extends SortingAlgorithm {
         mergesOrSwaps = 0;
         executionTime = 0;
 
-        executionTime = System.currentTimeMillis();
+        long startTime = System.nanoTime();
 
         int n = array.length;
         for (int i = 1; i < n; ++i) {
@@ -256,7 +260,8 @@ class InsertionSort extends SortingAlgorithm {
             iterations++;
         }
 
-        executionTime = System.currentTimeMillis() - executionTime;
+        long endTime = System.nanoTime();
+        executionTime = endTime - startTime;
     }
 }
 
