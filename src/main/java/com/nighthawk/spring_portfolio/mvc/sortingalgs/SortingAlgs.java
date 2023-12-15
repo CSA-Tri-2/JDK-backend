@@ -30,7 +30,7 @@ class SortingAlgorithm {
         System.out.println("Iterations: " + iterations);
         System.out.println("Comparisons: " + comparisons);
         System.out.println("Merges/Swaps: " + mergesOrSwaps);
-        System.out.println("Execution Time: " + executionTime + " milliseconds");
+        System.out.println("Execution Time: " + executionTime + " nanoseconds");
     }
     
     public Covid[] sort(Covid[] array) {
