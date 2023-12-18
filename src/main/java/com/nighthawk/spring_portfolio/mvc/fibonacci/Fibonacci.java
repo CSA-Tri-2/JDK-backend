@@ -81,7 +81,7 @@ class FibonacciRecursion extends FibonacciBase {//implementation of FibonacciBas
         return result;
     }
 
-    private static void fibonacciRecursionStructure(int num, long a, long b, List<Long> result) {//helper method for recursive calculation
+    private static void fibonacciRecursionStructure(int num, long a, long b, List<Long> result) {//helper method for recursive loop calculation
         if (num > 0) {
             result.add(a);
             fibonacciRecursionStructure(num - 1, b, a + b, result);
@@ -110,9 +110,9 @@ class FibonacciStream extends FibonacciBase {//implementation of FibonacciBase u
     }
 }
 
-public class Fibonacci {//fibonacci class to demonstrate and compare different Fibonacci implementations
+public class Fibonacci {//fibonacci class to show the different loops
     public static void main(String[] args) {
-        int num = getUserInput();
+        int num = getUserInput(); // user's frontend input 
 
         FibonacciBase fibonacciFor = new FibonacciFor();//instantiate and calculate Fibonacci using For Loop
         fibonacciFor.calculateFibonacci(num);
